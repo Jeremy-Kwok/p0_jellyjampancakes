@@ -1,2 +1,8 @@
 prattayD -- 2022-11-01 13:01
 - Initalized .txt files in repo 
+
+jeremyK -- 2022-11-01 13:03
+- Created repo under PM's ownership, filled out Google forms
+
+jacobG -- 2022-11-01 13:03
+- Worked on Design Doc
