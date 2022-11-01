@@ -1,0 +1,2 @@
+prattayD -- 2022-11-01 13:01
+- Initalized .txt files in repo 
