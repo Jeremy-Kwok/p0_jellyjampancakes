@@ -6,3 +6,6 @@ jeremyK -- 2022-11-01 13:03
 
 jacobG -- 2022-11-01 13:03
 - Worked on Design Doc
+
+prattayD -- 2022-11-01 21:45
+- Updated readme
