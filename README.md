@@ -2,7 +2,7 @@
 ## Roster:
 - Devo Jeremy (PM) - SQL 
 - Devo Prattay - Flask
-- Devo Jacbo - HTML/CSS
+- Devo Jacob - HTML/CSS
 
 ## Description of Website/App:
 under construction...
