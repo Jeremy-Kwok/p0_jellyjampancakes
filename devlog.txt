@@ -9,3 +9,6 @@ jacobG -- 2022-11-01 13:03
 
 prattayD -- 2022-11-01 21:45
 - Updated readme
+
+prattayD -- 2022-11-02 12:24
+- Updated flag to resize it into a better view
