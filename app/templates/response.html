@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<!--
+Team Jelly Jam Pancakes: Jacob Guo, Jeremy Kwok, Prattay Dey
+SoftDev
+K19 -- Sessions Greetings
+2022-11-06
+time spent: 2.0 hr
+-->
+
+<!--
+    Username: Pancake
+    Password: Syrup
+-->
+
+<html>
+
+  <head>
+    <title> RESPONSE PAGE </title>
+  </head>
+
+  <body>
+    <h3>
+        Jelly Jam Pancakes - Jeremy Kwok, Jacob Guo, Prattay Dey
+        <br>
+        SoftDev
+        <br>
+        K12 -- Take and Give
+        <br>
+        2022-11-06
+        <br>
+        time spent: 2.0 hours
+      </h3>
+
+
+      <h3>
+        HEY {{username}}, YOU'RE LOGGED IN!!!
+        <br>
+      </h3>
+      <h3>
+        GOOD ONE NUMNUTS
+      </h3>
+
+      <br> <br>
+      <button type="button" name="logout">
+        <a href="{{ url_for('logout')}}">logout</a>
+      </button>
+
+  </body>
+
+</html>
