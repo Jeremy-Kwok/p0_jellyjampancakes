@@ -1,0 +1,33 @@
+<title> REGISTER PAGE </title>
+</head>
+
+<body>
+  <h3>
+    Jelly Jam Pancakes - Jeremy Kwok, Jacob Guo, Prattay Dey
+    <br>
+    SoftDev
+    <br>
+    p00
+    <br>
+    2022-11-06
+  </h3>
+
+
+  <h3>
+    Registration Page: Create your account by inputting a username and password.
+  </h3>
+  <form action="/register", method="GET">
+    <input type="text" name="username">
+    <br>
+    <input type="password" name="password">
+    <br>
+    <input type="submit" name="sub1">
+  </form>
+  <br>
+  <h2> {{ message }} </h2>
+  <button type="button" name="logout">
+    <a href="{{ url_for('logout')}}">logout</a>
+  </button>
+</body>
+
+</html>

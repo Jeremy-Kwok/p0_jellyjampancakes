@@ -1,3 +1,38 @@
+Jelly Jam Pancakes
+Member Jeremy Kwok
+Member Jacob Guo
+Member Prattay Dey
+pd 7
+--------------------------------------------------------------
+OurStory: Collaborative Storytelling
+
+*under construction
+
+Scenario One: Your team has been contracted to create a collaborative storytelling game/website.
+
+    -Users will have to register to use the site.
+    -Logged-in users can either start a new story or add to an existing story.
+    -When adding to a story,
+        -Users are shown only the latest update to the story, not the whole thing.
+        -A user can then add some amount of text to the story.
+    -Once a user has added to a story, they cannot add to it again.
+    -When creating a new story,
+        -Users get to start with any amount of text and give the story a title.
+        -Logged in users will be able to read any story they have contributed to on their homepage (the landing page after login).
+
+*under construction
+
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
 prattayD -- 2022-11-01 13:01
 - Initalized .txt files in repo 
 
@@ -12,3 +47,10 @@ prattayD -- 2022-11-01 21:45
 
 prattayD -- 2022-11-02 12:24
 - Updated flag to resize it into a better view
+
+jeremyK -- 2022-11-09 1:31
+- Updated readme
+- Created register.html
+- Built a database for user login credentials (allows users to register and returns corresponding error messages)
+- Updated design doc
+==============================================================
