@@ -23,18 +23,18 @@ Scenario One: Your team has been contracted to create a collaborative storytelli
 *under construction
 
 
- ______   ______   __   __   __       ______   _______     
-/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
-\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
- \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
-  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
-   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
-    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 prattayD -- 2022-11-01 13:01
-- Initalized .txt files in repo 
+- Initalized .txt files in repo
 
 jeremyK -- 2022-11-01 13:03
 - Created repo under PM's ownership, filled out Google forms
@@ -53,4 +53,9 @@ jeremyK -- 2022-11-09 1:31
 - Created register.html
 - Built a database for user login credentials (allows users to register and returns corresponding error messages)
 - Updated design doc
+
+prattayD -- 2022-11-09 22:12
+- Added small touches to login.html and register.html
+- Updated requirements.txt with required pip installs
+- Updated how-to-LAUNCH codes
 ==============================================================

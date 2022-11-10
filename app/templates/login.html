@@ -24,11 +24,13 @@
       Login Page: Enter your username and password below to proceed.
     </h3>
     <form action="/auth", method="GET">
+      username:
       <input type="text" name="username">
       <br>
+      password:
       <input type="password" name="password">
       <br>
-      <input type="submit" name="sub1">
+      <input type="submit" name="sub1" value="Login">
     </form>
     <br>
     <h2> {{ message }} </h2>
