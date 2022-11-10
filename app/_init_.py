@@ -20,6 +20,7 @@ db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, oth
 c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
 
 c.execute("create table if not exists accounts(username text, password text);")
+c.execute("create table if not exists accounts(storyid int, title text, content text, contributors text, latestline text);")
 
 # checks to see if the user already has a session
 @app.route("/", methods=['GET', 'POST'])
@@ -150,6 +151,11 @@ def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
     return redirect(url_for('index'))
+
+# create a story
+@app.route('/create')
+def create_story():
+    return render_template('editing.html', story_name = '')
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
