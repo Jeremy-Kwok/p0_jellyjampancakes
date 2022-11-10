@@ -20,9 +20,9 @@ Run this python file to start serving Flask app
 ```
 python3 _init_.py
 ```
-Paste this URL into your browser to open the landing page
+A line such as below will appear in your terminal. Copy and paste the given URL into the browser to load the landing page
 ```
-http://127.0.0.1:5000
+* Running on http://127.0.0.1:5000
 ```
 
 
