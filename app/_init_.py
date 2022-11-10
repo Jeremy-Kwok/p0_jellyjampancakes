@@ -25,7 +25,7 @@ c.execute("create table if not exists accounts(username text, password text);")
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if 'username' in session:
-        return render_template('response.html', username = session['username'], method = request.method)
+        return render_template('feed.html', username = session['username'], method = request.method)
     return redirect(url_for('login'))
 
 # REGISTER
@@ -91,7 +91,7 @@ def authenticate():
         if c.fetchone():
             print("Login success!")
             session['username'] = request.args['username'] # stores username in session
-            return render_template('response.html', username = request.args['username'], password = request.args['password'], method = request.method)  #For 'get'
+            return render_template('feed.html', username = request.args['username'], password = request.args['password'], method = request.method)  #For 'get'
 
         else:
             print("Login failed")
@@ -100,12 +100,12 @@ def authenticate():
             # Username check
             c.execute(username_check)
             if not c.fetchone():
-                error_msg += "Username is incorrect. \n"
+                error_msg += "Username is incorrect or not found. \n"
             
             #Password check
             c.execute(password_check)
             if not c.fetchone():
-                error_msg += "Password is incorrect. \n"
+                error_msg += "Password is incorrect or not found. \n"
 
             error_msg += "Please try again."
             return render_template('login.html', message = error_msg)
@@ -125,7 +125,7 @@ def authenticate():
         if c.fetchone():
             print("Login success!")
             session['username'] = request.args['username'] # stores username in session
-            return render_template('response.html', username = request.args['username'], password = request.args['password'], method = request.method)  #For 'get'
+            return render_template('feed.html', username = request.args['username'], password = request.args['password'], method = request.method)  #For 'get'
 
         else:
             print("Login failed")

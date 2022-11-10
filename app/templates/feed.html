@@ -3,7 +3,7 @@
 <html>
 
   <head>
-    <title> RESPONSE PAGE </title>
+    <title> HOME/FEED PAGE </title>
   </head>
 
   <body>
@@ -21,14 +21,21 @@
 
 
       <h3>
-        HEY {{username}}, YOU'RE LOGGED IN!!!
+        Hey {{username}}, you've logged in!
         <br>
       </h3>
       <h3>
-        GOOD ONE NUMNUTS
+        Ready to read or edit some stories?
+      </h3>
+      <h3>
+        Recent stories you've edited:
+        <br>
+      </h3>
+      <h3>
+        Find stories you'd like here:
       </h3>
 
-      <br> <br>
+      <br>
       <button type="button" name="logout">
         <a href="{{ url_for('logout')}}">logout</a>
       </button>
