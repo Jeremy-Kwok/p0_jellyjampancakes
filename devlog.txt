@@ -58,4 +58,8 @@ prattayD -- 2022-11-09 22:12
 - Added small touches to login.html and register.html
 - Updated requirements.txt with required pip installs
 - Updated how-to-LAUNCH codes
+
+prattayD -- 2022-11-10 13:22
+- Started on creating new stories
+- Updated register page w/ confirm password
 ==============================================================
