@@ -8,12 +8,25 @@
 under construction...
 
 ## Launch codes:
-```git clone git@github.com:Jeremy-Kwok/p0_jellyjampancakes.git```
+Clone the repo into your local machine
+```
+git clone git@github.com:Jeremy-Kwok/p0_jellyjampancakes.git
+```
+Move into the right directory
+```
+cd p0_jellyjampancakes/app/
+```
+Run this python file to start serving Flask app
+```
+python3 _init_.py
+```
+Paste this URL into your browser to open the landing page
+```
+http://127.0.0.1:5000
+```
 
-QCC:
-    Why does my website sometimes render "Access to 127.0.0.1 was denied" when I run it? But then it goes onto work in an incognito window.
 
-DISCO:
+### DISCO:
 
     check_same_thread: https://www.folkstalk.com/2022/09/sqlite3-programmingerror-sqlite-objects-created-in-a-thread-can-only-be-used-in-that-same-thread-with-code-examples.html
 
@@ -21,3 +34,7 @@ DISCO:
         -redirect(url_for('[page path]')) redirects user to that page
 
     HTML:
+    
+### QCC:
+    Why does the website sometimes render "Access to 127.0.0.1 was denied" when we run it? But then it goes onto work in an incognito window.
+
