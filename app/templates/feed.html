@@ -21,41 +21,18 @@
 
 
       <h3>
-        Hey {{username}}, you've logged in!
-        <br>
-      </h3>
-
-      <!--
-      <h3>
-        Ready to read or edit some stories?
-        <br>
-        <button type="button" name="Create new story">
-          <a href="{{ url_for('create_story')}}">Create new story</a>
+        Hey {{username}}, you've logged in! 
+        <button type="button" name="logout">
+          <a href="{{ url_for('logout')}}">logout</a>
         </button>
+        <br>
+        What Would You Like to Do Today?
       </h3>
-      <h3>
-        Recent stories you've edited:
-      </h3>
-      <h3>
-        Find stories you'd like here:
-      -->
-        <!-- <button type="button" name="logout">
-         <a href=""> Edit this story</a>
-        </button> -->
-      </h3>
-
-      <h3>What Would You Like to Do Today?</h3>
-      <br>
-      <h3>Contribute a new Chapter to an Existing Story</h3>
-      <br>
       <h3>Begin Writing a New Story</h3>
       <br>
-      <h3>Explore our Library of Stories</h3>
-
+      <h3>View Stories You've Already Edited</h3>
       <br>
-      <button type="button" name="logout">
-        <a href="{{ url_for('logout')}}">logout</a>
-      </button>
+      <h3>Explore our Library to Read or Edit Stories</h3>
 
   </body>
 
