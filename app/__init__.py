@@ -27,7 +27,7 @@ c.execute("create table if not exists stories(storyTitle text, storyContent text
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if 'username' in session:
-        return render_template('feed.html', username = session['username'], method = request.method)
+        return render_template('feed.html', username = session['username'])
     return redirect(url_for('redirect_login'))
 
 # REGISTER
@@ -76,12 +76,6 @@ def redirect_register():
 
 # LOGIN
 
-# if user doesn't already have a session then prompt login
-@app.route("/redirect_login", methods=['GET', 'POST'])
-def redirect_login():
-    print(session)
-    return render_template('login.html')
-
 # login process
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -129,6 +123,12 @@ def login():
         error_msg += "Please try again."
         return render_template('login.html', message = error_msg)
 
+# if user doesn't already have a session then prompt login
+@app.route("/redirect_login", methods=['GET', 'POST'])
+def redirect_login():
+    print(session)
+    return render_template('login.html')
+
 # logout and redirect to login page
 @app.route("/logout", methods=['GET', 'POST'])
 def redirect_logout():
@@ -136,10 +136,11 @@ def redirect_logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
-# create a story
-@app.route("/redirect_create", methods=['GET', 'POST'])
-def redirect_create():
-    return render_template('create.html', message = "")
+# FEED
+
+@app.route("/redirect_feed", methods=['GET', 'POST'])
+def redirect_feed():
+    return render_template('feed.html', message = "")
 
 @app.route("/create", methods=['GET', 'POST'])
 def create():
@@ -175,9 +176,18 @@ def create():
     print("Publish fail: Title already taken")
     return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
 
-@app.route("/redirect_feed", methods=['GET', 'POST'])
-def redirect_feed():
-    return render_template('feed.html', message = "")
+@app.route("/redirect_create", methods=['GET', 'POST'])
+def redirect_create():
+    return render_template('create.html', message = "")
+
+@app.route("/library", methods=['GET', 'POST'])
+def library():
+
+    return 
+
+@app.route("/redirect_library", methods=['GET', 'POST'])
+def redirect_library():
+    return render_template('library.html', message = "")
 
 @app.route('/view')
 def view():
