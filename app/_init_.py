@@ -186,6 +186,14 @@ def create():
         return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
 '''
 
+@app.route('/view')
+def view():
+
+    #GET
+    if request.method == 'GET':
+        storyTitle = request.args['storyTitle']
+        list = c.execute('select * from entries').fetchall()
+
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
     app.debug = True
