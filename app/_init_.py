@@ -159,7 +159,7 @@ def redirect_logout():
 # create a story
 @app.route("/redirect_create", methods=['GET', 'POST'])
 def redirect_create():
-    return render_template('create.html', message = "", storyContent = "")
+    return render_template('create.html', message = "")
 
 @app.route("/create", methods=['GET', 'POST'])
 def create():
@@ -183,7 +183,7 @@ def create():
         # if there isn't an story associated with said title then create one
         if not c.fetchone():
             c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, username, date, time))
-            return redirect(url_for('feed'))
+            return redirect(url_for('redirect_feed'))
         # if storyTitle is already taken
         return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
 
@@ -204,13 +204,13 @@ def create():
         # if there isn't an story associated with said title then create one
         if not c.fetchone():
             c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, username, date, time))
-            return redirect(url_for('feed'))
+            return redirect(url_for('redirect_feed'))
         # if storyTitle is already taken
         return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
 
-@app.route("/feed", methods=['GET', 'POST'])
-def feed():
-    return 
+@app.route("/redirect_feed", methods=['GET', 'POST'])
+def redirect_feed():
+    return render_template('feed.html', message = "")
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
