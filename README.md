@@ -33,6 +33,10 @@ A line such as below will appear in your terminal. Copy and paste the given URL 
     Python-Flask:
         -redirect(url_for('[page path]')) redirects user to that page
 
+        -datetime.datetime.now() allows you to get the date and time in the specified format (%y = year, %m = month, %d = day, %H = hour, %M = minute, %S = second)
+
+        -
+
     HTML:
     
 ### QCC:
