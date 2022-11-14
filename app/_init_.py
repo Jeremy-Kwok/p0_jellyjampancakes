@@ -129,8 +129,8 @@ def authenticate():
         c.execute(login_check)
         if c.fetchone():
             print("Login success!")
-            session['username'] = request.args['username'] # stores username in session
-            return render_template('feed.html', username = request.args['username'], password = request.args['password'], method = request.method)  #For 'get'
+            session['username'] = request.form['username'] # stores username in session
+            return render_template('feed.html', username = request.form['username'], password = request.form['password'], method = request.method)  #For 'post'
 
         else:
             print("Login failed")
