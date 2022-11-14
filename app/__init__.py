@@ -3,7 +3,7 @@
 # 2022-11-07
 # time spent: 
 
-from flask import Flask            #facilitate flask webserving
+from flask import Flask             #facilitate flask webserving
 from flask import render_template   #facilitate jinja templating
 from flask import request           #facilitate form submission
 from flask import session           #facilitate user sessions
@@ -41,6 +41,11 @@ def register():
     if request.method == 'GET':
         input_username = request.args['username']
         input_password = request.args['password']
+        input_confirm_password = request.args['confirm password']
+
+        #Checks for password/confirm password match
+        if input_password != input_confirm_password:
+            return render_template('register.html', message = "Passwords do not match. Please try again.")
 
         username_check = f"select username from accounts where username='{input_username}';"
 
@@ -56,6 +61,11 @@ def register():
     if request.method == 'POST':
         input_username = request.form['username']
         input_password = request.form['password']
+        input_confirm_password = request.form['confirm password']
+
+        #Checks for password/confirm password match
+        if input_password != input_confirm_password:
+            return render_template('register.html', message = "Passwords do not match. Please try again.")
 
         username_check = f"select username from accounts where username='{input_username}';"
 
@@ -174,8 +184,8 @@ def create():
         date = datetime.datetime.now().strftime("%y-%m-%d")
         time = datetime.datetime.now().strftime("%H:%M:%S")
 
-        print(storyTitle)
-        print(storyContent)
+        print("Story Title: " + storyTitle)
+        print("Story Content: " + storyContent)
 
         title_check = f"select storyTitle from stories where storyTitle='{storyTitle}';"
 
@@ -183,8 +193,10 @@ def create():
         # if there isn't an story associated with said title then create one
         if not c.fetchone():
             c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, username, date, time))
+            print("Publish Success!")
             return redirect(url_for('redirect_feed'))
         # if storyTitle is already taken
+        print("Publish fail: Title already taken")
         return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
 
     #POST
@@ -195,8 +207,8 @@ def create():
         date = datetime.datetime.now().strftime("%y-%m-%d")
         time = datetime.datetime.now().strftime("%H:%M:%S")
 
-        print(storyTitle)
-        print(storyContent)
+        print("Story Title: " + storyTitle)
+        print("Story Content: " + storyContent)
 
         title_check = f"select storyTitle from stories where storyTitle='{storyTitle}';"
 
@@ -204,8 +216,10 @@ def create():
         # if there isn't an story associated with said title then create one
         if not c.fetchone():
             c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, username, date, time))
+            print("Publish Success!")
             return redirect(url_for('redirect_feed'))
         # if storyTitle is already taken
+        print("Publish fail: Title already taken")
         return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
 
 @app.route("/redirect_feed", methods=['GET', 'POST'])
