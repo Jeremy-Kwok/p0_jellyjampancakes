@@ -62,4 +62,6 @@ prattayD -- 2022-11-09 22:12
 prattayD -- 2022-11-10 13:22
 - Started on creating new stories
 - Updated register page w/ confirm password
+
+jeremyK -- 2022-11-14
 ==============================================================

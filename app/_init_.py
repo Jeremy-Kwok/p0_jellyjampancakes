@@ -21,7 +21,7 @@ db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, oth
 c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
 
 c.execute("create table if not exists accounts(username text, password text);")
-c.execute("create table if not exists accounts(storyid int, title text, content text, contributors text, latestline text);")
+c.execute("create table if not exists stories(storyID int, storyTitle text, storyContent text, username text, date text, time text);")
 
 # checks to see if the user already has a session
 @app.route("/", methods=['GET', 'POST'])
@@ -157,7 +157,7 @@ def redirect_logout():
     return redirect(url_for('index'))
 
 # create a story
-@app.route('/createNewStory')
+@app.route('/redirect_create')
 def redirect_create():
     return render_template('create.html', message = "", storyContent = "")
 
@@ -166,19 +166,25 @@ def create():
     
     #GET
     if request.method == 'GET':
+        #storyID = 
         storyTitle = request.args['storyTitle']
         storyContent = request.args['storyContent']
-        date_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        date = datetime.datetime.now().strftime("%y-%m-%d")
+        time = datetime.datetime.now().strftime("%H:%M:%S")
 
-        username_check = f"select username from stories where username='{storyTitle}';"
+        print(storyContent)
 
-        c.execute(username_check)
+        title_check = f"select title from stories where title='{storyTitle}';"
+
+'''
+        c.execute(title_check)
         # if there isn't an story associated with said title then create one
         if not c.fetchone():
-            c.execute("insert into stories values(?, ?, ?, ?)", (storyTitle, session['username'], date_time, storyContent))
+            c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, session['username'], date, time))
             return redirect(url_for('feed.html'))
         # if storyTitle is already taken
-        return render_template('create.html', message = "Username is already taken. Please select another username.", storyContent = storyContent)
+        return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
+'''
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified

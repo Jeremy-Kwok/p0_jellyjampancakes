@@ -7,30 +7,39 @@
   </head>
 
   <body>
+    <!--
     <h3>Title</h3>
     <br>
     <h3>Add a Genre</h3>
     <br>
     <h3>Add Tags</h3>
     <br>
-    <h3>Write Your Own Story</h3>
+    -->
+    <h2>Write Your Own Story</h2>
 
     <h3>
-      Login Page: Enter your username and password below to proceed.
+      To start, please choose a title for your story and add some content
     </h3>
-    <form action="/auth", method="GET">
+    <form action="/create", method="POST">
       Title:
       <input type="text" name="storyTitle">
       <br>
       Story Content:
-      <input type="text" name="storyContent">
       <br>
-      <input type="submit" name="sub1" value="Login">
+      <textarea name="storyContent" rows="5" cols="50"></textarea>
+      <br>
+      <input type="submit" name="sub1" value="Publish!">
     </form>
+    <br>
+    <br>
+    <br>
+    <h2> {{ message }} </h2>
 
+    <!--
     <button type="button" name="Submit">
         <a href="">Publish Story</a>
     </button>
+    -->
   </body>
 
 </html>
