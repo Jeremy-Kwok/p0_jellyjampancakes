@@ -163,6 +163,8 @@ def redirect_create():
 
 @app.route("/create", methods=['GET', 'POST'])
 def create():
+
+    username = session['username']
     
     #GET
     if request.method == 'GET':
@@ -180,8 +182,8 @@ def create():
         c.execute(title_check)
         # if there isn't an story associated with said title then create one
         if not c.fetchone():
-            c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, session['username'], date, time))
-            return redirect(url_for('feed.html'))
+            c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, username, date, time))
+            return redirect(url_for('feed'))
         # if storyTitle is already taken
         return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
 
@@ -201,11 +203,14 @@ def create():
         c.execute(title_check)
         # if there isn't an story associated with said title then create one
         if not c.fetchone():
-            c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, session['username'], date, time))
-            return redirect(url_for('feed.html'))
+            c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, username, date, time))
+            return redirect(url_for('feed'))
         # if storyTitle is already taken
         return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
 
+@app.route("/feed", methods=['GET', 'POST'])
+def feed():
+    return 
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
