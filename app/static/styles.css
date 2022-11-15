@@ -1,6 +1,37 @@
+/* @font-face{
+    font-family: customF;
+    src: url(AlegreyaSansSC-Regular.ttf)
+} */
+
 body {
+    text-align: center;
+    color: azure;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
     background-color: powderblue;
   }
-  h3 {
-    color: blue;
+  h1{
+    text-shadow: 2px 2px 4px #000000;
+  }
+  h2 {
+    text-shadow: 2px 2px 4px #000000;
+  }
+  h4{
+    color: black;
+  }
+  form{
+    font-weight: 600;
+    text-shadow: 2px 2px 4px #000000;
+  }
+  a:link{  
+
+  }
+  a:visited {  
+
+  }
+  a:hover {  
+
+  }
+  a:active { 
+    
   }
