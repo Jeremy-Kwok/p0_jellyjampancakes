@@ -69,5 +69,6 @@ prattayD -- 2022-11-14 23:00
 - Fixed __init__ so that a user must enter a story title and some form of content before they can create and save the story.
 - Fixed register page so that a blank username or password cannot be registered
 - Updated requirements.txt
+- Updated readme
 
 ==============================================================
