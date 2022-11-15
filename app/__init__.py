@@ -54,20 +54,36 @@ def register():
         input_password = request.form['password']
         input_confirm_password = request.form['confirm password']
 
-    #Checks for password/confirm password match
-    if input_password != input_confirm_password:
-        return render_template('register.html', message = "Passwords do not match. Please try again.")
+    #if no registration info is inputted into the fields
+    if input_username == '' or input_password == '' or input_confirm_password == '':
+        error_msg = ""
+        if input_username == '':
+            error_msg += "Please enter a username. \n"
 
-    #Checks for existing username in accounts table
-    c.execute(f"select username from accounts where username='{input_username}';")
+        if input_password == '':
+            error_msg += "Please enter a password. \n"
 
-    # if there isn't an account associated with said username then create one
-    if not c.fetchone():
-        c.execute("insert into accounts values(?, ?)", (input_username, input_password))
-        return render_template('login.html')
-    # if username is already taken
+        if input_confirm_password == '':
+            error_msg += "Please confirm your password. \n"
+
+        return render_template('register.html', message = error_msg)
+
+    # if info is entered into fields
     else:
-        return render_template('register.html', message = "Username is already taken. Please select another username.")
+        #Checks for password/confirm password match
+        if input_password != input_confirm_password:
+            return render_template('register.html', message = "Passwords do not match. Please try again.")
+
+        #Checks for existing username in accounts table
+        c.execute(f"select username from accounts where username='{input_username}';")
+
+        # if there isn't an account associated with said username then create one
+        if not c.fetchone():
+            c.execute("insert into accounts values(?, ?)", (input_username, input_password))
+            return render_template('login.html')
+        # if username is already taken
+        else:
+            return render_template('register.html', message = "Username is already taken. Please select another username.")
 
 # redirect to user registration page
 @app.route("/redirect_register", methods=['GET', 'POST'])
