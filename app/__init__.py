@@ -140,7 +140,7 @@ def redirect_logout():
 
 @app.route("/redirect_feed", methods=['GET', 'POST'])
 def redirect_feed():
-    return render_template('feed.html', message = "")
+    return render_template('feed.html', username = session['username'], message = "")
 
 @app.route("/create", methods=['GET', 'POST'])
 def create():
