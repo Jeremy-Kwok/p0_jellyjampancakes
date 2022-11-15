@@ -48,6 +48,9 @@ prattayD -- 2022-11-01 21:45
 prattayD -- 2022-11-02 12:24
 - Updated flag to resize it into a better view
 
+jacobG -- 2022-11-07
+- More cosmetic changes to the html files
+
 jeremyK -- 2022-11-09 1:31
 - Updated readme
 - Created register.html
@@ -59,9 +62,17 @@ prattayD -- 2022-11-09 22:12
 - Updated requirements.txt with required pip installs
 - Updated how-to-LAUNCH codes
 
+jacobG -- 2022-11-10
+- Added basic template and structures of editing.html
+- Doing more cosmetic changes to the website
+
 prattayD -- 2022-11-10 13:22
 - Started on creating new stories
 - Updated register page w/ confirm password
+
+jacobG -- 2022-11-12
+- Added new html files to /templates after making new improvements to old ideas
+- Edited design doc 
 
 jeremyK -- 2022-11-14
 
@@ -71,4 +82,9 @@ prattayD -- 2022-11-14 23:00
 - Updated requirements.txt
 - Updated readme
 
+jacobG -- 2022-11-14
+- Worked on editing html for better appearance with Jeremy
+- Worked together on Flask and SQLite3 to link new pages
+- Created CSS stylesheet to make site look nice
+- Edited design doc
 ==============================================================
