@@ -7,11 +7,23 @@
   </head>
 
   <body>
-    <h2><a href="{{ url_for('redirect_feed')}}">Back to Feed</a></h2>
+    <h2><a href="{{ url_for('redirect_feed')}}"><span>&#8592;</span> Back to Feed</a></h2>
 
     <h1>Rediscover</h1>
     <h3>See Stories that You've Edited</h3>
 
+    <table>
+      {% for n in feed %}
+      <tr>
+        <td>{{ n[0] }}</td>
+        <td>{{ n[1] }}</td>
+        <td>{{ n[2] }}</td>
+        <td>{{ n[3] }}</td>
+        <td>{{ n[4] }}</td>
+        <td>{{ n[5] }}</td>
+      </td>
+      {% endfor %}
+    </table>
     <br>
 
     <h1>Explore</h1>
