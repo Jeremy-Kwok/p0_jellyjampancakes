@@ -43,9 +43,8 @@ A line such as below will appear in your terminal. Copy and paste the given URL 
 
         -datetime.datetime.now() allows you to get the date and time in the specified format (%y = year, %m = month, %d = day, %H = hour, %M = minute, %S = second)
 
-        -
-
     HTML:
+        - For the input type submit, it's useful to use the 'value' attribute to change from the default value of "Submit" or "Submit Query" to something more specific such as "Create Story" or "Login"
 
 ### QCC:
     Why does the website sometimes render "Access to 127.0.0.1 was denied" when we run it? But then it goes on to work in an incognito window.
