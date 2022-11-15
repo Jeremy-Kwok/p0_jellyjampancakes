@@ -1,7 +1,7 @@
 # Jelly Jam Pancakes - Jeremy Kwok, Jacob Guo, Prattay Dey
 # SoftDev
 # 2022-11-07
-# time spent: 
+# time spent:
 
 from flask import Flask             #facilitate flask webserving
 from flask import render_template   #facilitate jinja templating
@@ -60,7 +60,7 @@ def register():
 
     #Checks for existing username in accounts table
     c.execute(f"select username from accounts where username='{input_username}';")
-    
+
     # if there isn't an account associated with said username then create one
     if not c.fetchone():
         c.execute("insert into accounts values(?, ?)", (input_username, input_password))
@@ -99,22 +99,22 @@ def login():
     if c.fetchone():
         print("Login success!")
         if request.method == 'GET': #For 'get'
-            session['username'] = request.args['username'] # stores username in session 
+            session['username'] = request.args['username'] # stores username in session
 
         if request.method == 'POST': #For 'post'
-            session['username'] = request.form['username'] # stores username in session 
-        
+            session['username'] = request.form['username'] # stores username in session
+
         return render_template('feed.html', username = session['username'])
 
     else:
         print("Login failed")
         error_msg = ''
-            
+
         # Username check
         c.execute(username_check)
         if not c.fetchone():
             error_msg += "Username is incorrect or not found. \n"
-        
+
         #Password check
         c.execute(password_check)
         if not c.fetchone():
@@ -148,33 +148,44 @@ def create():
     username = session['username']
     date = datetime.datetime.now().strftime("%y-%m-%d")
     time = datetime.datetime.now().strftime("%H:%M:%S")
-    
+
     #GET
     if request.method == 'GET':
-        #storyID = 
+        #storyID =
         storyTitle = request.args['storyTitle']
         storyContent = request.args['storyContent']
 
     #POST
     if request.method == 'POST':
-        #storyID = 
+        #storyID =
         storyTitle = request.form['storyTitle']
         storyContent = request.form['storyContent']
 
     print("Story Title: " + storyTitle)
     print("Story Content: " + storyContent)
 
-    c.execute(f"select storyTitle from stories where storyTitle='{storyTitle}';")
+    if storyTitle == '' or storyContent == '':
+        error_msg = ""
+        if storyTitle == '':
+            error_msg += "Please enter a title. \n"
 
-    # if there isn't an story associated with said title then create one
-    if not c.fetchone():
-        c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, username, date, time))
-        print("Publish Success!")
-        return redirect(url_for('redirect_feed'))
+        if storyContent == '':
+            error_msg += "Please enter content to your story. \n"
 
-    # if storyTitle is already taken
-    print("Publish fail: Title already taken")
-    return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
+        return render_template('create.html', message = error_msg)
+
+    else:
+        c.execute(f"select storyTitle from stories where storyTitle='{storyTitle}';")
+
+        # if there isn't an story associated with said title then create one
+        if not c.fetchone():
+            c.execute("insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, username, date, time))
+            print("Publish Success!")
+            return redirect(url_for('redirect_feed'))
+
+        # if storyTitle is already taken
+        print("Publish fail: Title already taken")
+        return render_template('create.html', message = "Story Title is already taken. Please select another Title.")
 
 @app.route("/redirect_create", methods=['GET', 'POST'])
 def redirect_create():
@@ -183,7 +194,7 @@ def redirect_create():
 @app.route("/library", methods=['GET', 'POST'])
 def library():
 
-    return 
+    return
 
 @app.route("/redirect_library", methods=['GET', 'POST'])
 def redirect_library():
