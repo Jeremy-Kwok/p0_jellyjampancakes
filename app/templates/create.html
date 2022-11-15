@@ -3,21 +3,22 @@
 <html>
 
   <head>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
     <title> CREATE YOUR STORY </title>
   </head>
 
   <body>
     <h2><a href="{{ url_for('redirect_feed')}}"><span>&#8592;</span> Back to Feed</a></h2>
 
-    <h1>Write Your Own Story</h1>
+    <h2>Write Your Own Story</h2>
 
-    <h3>
+    <h2>
       To start, please choose a title for your story and add some content
-    </h3>
+    </h2>
     <form action="/create", method="POST">
-      <strong>Title:</strong>
+      <strong>Title: <br></strong>
       <input type="text" name="storyTitle">
-      <br>
+      <br> <br>
       Story Content:
       <br>
       <textarea name="storyContent" rows="5" cols="50"></textarea>

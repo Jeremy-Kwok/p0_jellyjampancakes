@@ -3,6 +3,7 @@
 <html>
 
   <head>
+    <link rel="stylesheet" type="text/css"  href="static/styles.css">
     <title> HOME/FEED PAGE </title>
   </head>
 
@@ -11,11 +12,7 @@
       <h1>What Would You Like to Do Today?</h1>
       <br>
       <h3><a href="{{ url_for('redirect_create')}}">Begin Writing a New Story</a></h3>
-<!--
-      <button type="button" name="create">
-        <a href="{{ url_for('redirect_create')}}">Start Writing</a>
-      </button>
--->
+
       <br>
 
       <h3><a href="{{ url_for('redirect_library')}}">View and Edit Stories in the Library</a></h3>
@@ -23,11 +20,6 @@
       <br>
 
       <h3><a href="{{ url_for('redirect_logout')}}">Logout</a></h3>
-<!--
-      <button type="button" name="logout">
-        <a href="{{ url_for('redirect_logout')}}">Logout</a>
-      </button>
--->
 
   </body>
 </html>

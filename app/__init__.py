@@ -1,7 +1,7 @@
 # Jelly Jam Pancakes - Jeremy Kwok, Jacob Guo, Prattay Dey
 # SoftDev
 # 2022-11-07
-# time spent: 
+# time spent:
 
 from flask import Flask             #facilitate flask webserving
 from flask import render_template   #facilitate jinja templating
@@ -22,6 +22,9 @@ c = db.cursor()               #facilitate db ops -- you will use cursor to trigg
 
 c.execute("create table if not exists accounts(username text, password text);")
 c.execute("create table if not exists stories(storyTitle text, storyContent text, username text, date text, time text);")
+c.execute("create table if not exists recentFeed(storyTitle text, storyContent text, username text, date text, time text, userEdited int);")
+
+editingStoryName = ""
 
 # checks to see if the user already has a session
 @app.route("/", methods=['GET', 'POST'])
@@ -54,20 +57,36 @@ def register():
         input_password = request.form['password']
         input_confirm_password = request.form['confirm password']
 
-    #Checks for password/confirm password match
-    if input_password != input_confirm_password:
-        return render_template('register.html', message = "Passwords do not match. Please try again.")
+    #if no registration info is inputted into the fields
+    if input_username == '' or input_password == '' or input_confirm_password == '':
+        error_msg = ""
+        if input_username == '':
+            error_msg += "Please enter a username. \n"
 
-    #Checks for existing username in accounts table
-    c.execute(f"select username from accounts where username='{input_username}';")
-    
-    # if there isn't an account associated with said username then create one
-    if not c.fetchone():
-        c.execute("insert into accounts values(?, ?)", (input_username, input_password))
-        return render_template('login.html')
-    # if username is already taken
+        if input_password == '':
+            error_msg += "Please enter a password. \n"
+
+        if input_confirm_password == '':
+            error_msg += "Please confirm your password. \n"
+
+        return render_template('register.html', message = error_msg)
+
+    # if info is entered into fields
     else:
-        return render_template('register.html', message = "Username is already taken. Please select another username.")
+        #Checks for password/confirm password match
+        if input_password != input_confirm_password:
+            return render_template('register.html', message = "Passwords do not match. Please try again.")
+
+        #Checks for existing username in accounts table
+        c.execute(f"select username from accounts where username='{input_username}';")
+
+        # if there isn't an account associated with said username then create one
+        if not c.fetchone():
+            c.execute("insert into accounts values(?, ?)", (input_username, input_password))
+            return render_template('login.html')
+        # if username is already taken
+        else:
+            return render_template('register.html', message = "Username is already taken. Please select another username.")
 
 # redirect to user registration page
 @app.route("/redirect_register", methods=['GET', 'POST'])
@@ -99,22 +118,22 @@ def login():
     if c.fetchone():
         print("Login success!")
         if request.method == 'GET': #For 'get'
-            session['username'] = request.args['username'] # stores username in session 
+            session['username'] = request.args['username'] # stores username in session
 
         if request.method == 'POST': #For 'post'
-            session['username'] = request.form['username'] # stores username in session 
-        
+            session['username'] = request.form['username'] # stores username in session
+
         return render_template('feed.html', username = session['username'])
 
     else:
         print("Login failed")
         error_msg = ''
-            
+
         # Username check
         c.execute(username_check)
         if not c.fetchone():
             error_msg += "Username is incorrect or not found. \n"
-        
+
         #Password check
         c.execute(password_check)
         if not c.fetchone():
@@ -148,21 +167,31 @@ def create():
     username = session['username']
     date = datetime.datetime.now().strftime("%y-%m-%d")
     time = datetime.datetime.now().strftime("%H:%M:%S")
-    
+
     #GET
     if request.method == 'GET':
-        #storyID = 
+        #storyID =
         storyTitle = request.args['storyTitle']
         storyContent = request.args['storyContent']
 
     #POST
     if request.method == 'POST':
-        #storyID = 
+        #storyID =
         storyTitle = request.form['storyTitle']
         storyContent = request.form['storyContent']
 
     print("Story Title: " + storyTitle)
     print("Story Content: " + storyContent)
+
+    if storyTitle == '' or storyContent == '':
+        error_msg = ""
+        if storyTitle == '':
+            error_msg += "Please enter a title. \n"
+
+        if storyContent == '':
+            error_msg += "Please enter content to your story. \n"
+
+        return render_template('create.html', message = error_msg)
 
     c.execute(f"select storyTitle from stories where storyTitle='{storyTitle}';")
 
@@ -180,59 +209,14 @@ def create():
 def redirect_create():
     return render_template('create.html', message = "")
 
-@app.route("/library", methods=['GET', 'POST'])
-def library():
-
-    username = session['username']
-
-    # deletes old recentFeed table and creates a new one
-    c.execute("drop table recentFeed;")
-    c.execute("create table if not exists recentFeed(storyTitle text, storyContent text, username text, date text, time text, userEdit int);")
-
-    # FOR STORIES THE USER HAS ALREADY EDITED
-
-    # takes all unique titles in stories table that the username has edited
-    c.execute(f"select distinct storyTitle from stories where username='{username}';")
-    editedTitles = c.fetchall()
-
-    # for each storyTitle:
-    # 1. sorts entries with most recent at the top, 
-    # 2. selects the most recently edited story record 
-    # 3. inputs it into recentFeed
-    for rows in editedTitles:
-        c.execute(f"insert into recentFeed select * from stories where storyTitle='{rows}' order by date DESC, time DESC limit 1;")
-
-    # for all added entries, input 1 to indicate the user has edited them already
-    c.execute("update recentFeed set userEdited=1")
-    
-    # FOR STORIES THE USER HAS NOT EDITED
-
-    # takes all unique titles in stories table that the username has NOT edited
-    c.execute(f"select distinct storyTitle from stories where username!='{username}';")
-    uneditedTitles = c.fetchall()
-
-    # for each storyTitle:
-    # 1. sorts all entries with most recent at the top, 
-    # 2. selects the most recently edited story record 
-    # 3. inputs it into recentFeed
-    for rows in editedTitles:
-        c.execute(f"insert into recentFeed select * from stories where storyTitle='{rows}' order by date DESC, time DESC limit 1;")
-
-    # for all newly added entries, input 0 to indicate the user has NOT edited them yet
-    c.execute("update recentFeed set userEdited=0 where userEdited!=1")
-
-    # send everything in recentEdited to library.html
-    c.execute("select * from recentFeed")
-    results = c.fetchall()
-    return render_template("library.html", feed = results)
-
+#@app.route("/library", methods=['GET', 'POST'])
 
 @app.route("/redirect_library", methods=['GET', 'POST'])
 def redirect_library():
     
     username = session['username']
 
-    # deletes old recentFeed table and creates a new one
+    # deletes old recentFeed table and creates a new one (userEdited = 1 means the user has a edit record)
     c.execute("drop table recentFeed;")
     c.execute("create table if not exists recentFeed(storyTitle text, storyContent text, username text, date text, time text, userEdited int);")
 
@@ -268,24 +252,54 @@ def redirect_library():
     for tupleTitles in uneditedTitles:
         titles = tupleTitles[0]
         print("Unedited: " + titles)
-        c.execute(f"insert into recentFeed select * from stories where storyTitle='{titles}' order by date DESC, time DESC limit 1;")
+        c.execute(f"insert into recentFeed (storyTitle, storyContent, username, date, time) select storyTitle, storyContent, username, date, time from stories where storyTitle='{titles}' order by date DESC, time DESC limit 1;")
 
     # for all newly added entries, input 0 to indicate the user has NOT edited them yet
     c.execute("update recentFeed set userEdited=0 where userEdited!=1")
 
+    # save to db
+    db.commit()
+
     # send everything in recentEdited to library.html
     c.execute("select * from recentFeed")
     results = c.fetchall()
-    #print("Results: " + results)
+    print(results)
     return render_template("library.html", feed = results)
 
-@app.route('/view')
-def view():
+@app.route('/<storyTitle>/view', methods=['GET', 'POST'])
+def redirect_view(storyTitle):
+
+    c.execute(f"select * from stories where storyTitle='{storyTitle}' order by date DESC, time DESC;")
+    results = c.fetchall()
+    #print(results)
+    return render_template('view.html', storyName = storyTitle, storyComponents = results)
+
+@app.route('/<storyTitle>/edit', methods=['GET', 'POST'])
+def redirect_edit(storyTitle):
+    c.execute(f"select * from stories where storyTitle='{storyTitle}' order by date DESC, time DESC;")
+    result = c.fetchone()
+    print(result)
+    return render_template('edit.html', storyName = storyTitle, recentComponent = result)
+
+@app.route('/edit', methods=['GET', 'POST'])
+def edit():
+    username = session['username']
+    date = datetime.datetime.now().strftime("%y-%m-%d")
+    time = datetime.datetime.now().strftime("%H:%M:%S")
 
     #GET
     if request.method == 'GET':
         storyTitle = request.args['storyTitle']
-        list = c.execute('select * from entries').fetchall()
+        storyContent = request.args['newStoryContent']
+
+    #POST
+    if request.method == 'POST':
+        storyTitle = request.form['storyTitle']
+        storyContent = request.form['newStoryContent']
+    
+    c.execute(f"insert into stories values(?, ?, ?, ?, ?)", (storyTitle, storyContent, username, date, time))
+    print("Edit Success!")
+    return redirect(url_for('redirect_feed'))
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified

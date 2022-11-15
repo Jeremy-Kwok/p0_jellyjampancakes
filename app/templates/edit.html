@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <title> STORY EDITING PAGE </title>
+  </head>
+
+  <body>
+    <h3>
+      You have selected to edit "{{ storyName }}". Here is the latest addition:
+
+      <div class="preview">
+        <div class="previewContent"><p>{{ recentComponent[1] }}</p></div>
+        <div class="previewRecord"><h5>Edited by User {{ recentComponent[2] }} on 20{{ recentComponent[3] }} {{ recentComponent[4] }}</h5></div>
+      </div>
+
+      <br>
+      Add your own twist to the story!
+    </h3>
+
+
+    <form action="/edit", method="POST">
+      <input type="hidden" name="storyTitle" value={{storyName}}>
+      New Story Content:
+      <br>
+      <textarea name="newStoryContent" rows="5" cols="50"></textarea>
+      <br>
+      <input type="submit" name="sub1" value="Publish!">
+    </form>
+
+  </body>
+
+</html>

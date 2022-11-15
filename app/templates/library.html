@@ -3,32 +3,54 @@
 <html>
 
   <head>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
     <title> LIBRARY </title>
   </head>
 
   <body>
+
     <h2><a href="{{ url_for('redirect_feed')}}"><span>&#8592;</span> Back to Feed</a></h2>
 
     <h1>Rediscover</h1>
-    <h3>See Stories that You've Edited</h3>
+    <h4>See Stories that You've Edited</h4>
 
-    <table>
-      {% for n in feed %}
-      <tr>
-        <td>{{ n[0] }}</td>
-        <td>{{ n[1] }}</td>
-        <td>{{ n[2] }}</td>
-        <td>{{ n[3] }}</td>
-        <td>{{ n[4] }}</td>
-        <td>{{ n[5] }}</td>
-      </td>
-      {% endfor %}
-    </table>
+    <!-- Loop through data and get userEdited stories -->
+    
+    {% for n in feed %}
+    {% if n[5] == 1 %}
+
+    <a href="{{ url_for('redirect_view', storyTitle = n[0]) }}">  
+      <div class="preview">
+        <div class="previewContent"><p>{{ n[1] }}</p></div>
+        <div class="previewTitle"><h4>{{ n[0] }}</h4></div>
+        <div class="previewRecord"><h5>Last edited by User {{ n[2] }} on 20{{ n[3] }} {{ n[4] }}</h5></div>
+      </div>
+    </a>
+
+    {% endif %}
+    {% endfor %}
+
     <br>
 
-    <h1>Explore</h1>
-    <h3>Browse our Library for New Stories</h3>
+  
 
+    <h1>Explore</h1>
+    <h4>Browse our Library for New Stories</h4>
+
+    <!-- Loop through data and get userUndited stories -->
+    {% for n in feed %}
+    {% if n[5] != 1 %}
+    
+    <a href="{{ url_for('redirect_edit', storyTitle = n[0]) }}">
+      <div class="preview">
+        <div class="previewContent"><p>{{ n[1] }}</p></div>
+        <div class="previewTitle"><h4>{{ n[0] }}</h4></div>
+        <div class="previewRecord"><h5>Last edited by User {{ n[2] }} on 20{{ n[3] }} {{ n[4] }}</h5></div>
+      </div>
+    </a>
+
+    {% endif %}
+    {% endfor %}
   
   </body>
 

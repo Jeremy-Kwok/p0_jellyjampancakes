@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <title> STORY VIEWING PAGE </title>
+  </head>
+
+  <body>
+    <h3>
+        You have selected to view "{{storyName}}". Enjoy!
+    </h3>
+
+    {% for n in storyComponents %}
+    
+    <div class="preview">
+        <div class="previewContent"><p>{{ n[1] }}</p></div>
+        <div class="previewRecord"><h5>Edited by User {{ n[2] }} on 20{{ n[3] }} {{ n[4] }}</h5></div>
+    </div>
+
+    {% endfor %}
+
+  </body>
+
+</html>

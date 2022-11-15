@@ -48,6 +48,9 @@ prattayD -- 2022-11-01 21:45
 prattayD -- 2022-11-02 12:24
 - Updated flag to resize it into a better view
 
+jacobG -- 2022-11-07
+- More cosmetic changes to the html files
+
 jeremyK -- 2022-11-09 1:31
 - Updated readme
 - Created register.html
@@ -59,9 +62,52 @@ prattayD -- 2022-11-09 22:12
 - Updated requirements.txt with required pip installs
 - Updated how-to-LAUNCH codes
 
+jacobG -- 2022-11-10
+- Added basic template and structures of editing.html
+- Doing more cosmetic changes to the website
+
+jeremyK -- 2022-11-10
+- Created an empty database to play around with/create tables
+
 prattayD -- 2022-11-10 13:22
 - Started on creating new stories
 - Updated register page w/ confirm password
 
-jeremyK -- 2022-11-14
+jeremyK -- 2022-11-11
+- Contributed to feed.html
+- Added to QCC in Readme
+
+jacobG -- 2022-11-12
+- Added new html files to /templates after making new improvements to old ideas
+- Edited design doc 
+
+jeremyK -- 2022-11-12
+- Created create.html and modified feed.html so that the user can log out from there
+- Tidied up redirect urls to make our code easier to understand
+- Introduced datetime into our program, which allows us to record when things happen in real time
+
+prattayD -- 2022-11-14 23:00
+- Fixed __init__ so that a user must enter a story title and some form of content before they can create and save the story.
+- Fixed register page so that a blank username or password cannot be registered
+- Updated requirements.txt
+- Updated readme
+
+jacobG -- 2022-11-14
+- Worked on editing html for better appearance with Jeremy
+- Worked together on Flask and SQLite3 to link new pages
+- Created CSS stylesheet to make site look nice
+- Edited design doc
+
+jeremyK -- 2022-11-15 5:40
+- Created new table recentFeed
+- Renamed app routes to make the code easier to understand and navigate
+- Simplified code as much as possible so that it won't be too hard to understand
+- Created approute and html file for Library
+- Cleared out database
+- Stored some sample users in database
+- Worked on CSS for the feed.html page
+- Removed all unecessary headers from pages and appropriately sized headers
+- Created view and edit mode, linked it up to their respective approutes and html files
+- Revised design doc
+
 ==============================================================

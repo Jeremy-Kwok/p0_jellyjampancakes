@@ -3,12 +3,13 @@
 <html>
 
   <head>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
     <title> LOGIN PAGE </title>
   </head>
 
   <body>
     <h1>Login Page</h1>
-    <h3>Enter your username and password below to proceed.</h3>
+    <h2>Enter your username and password below to proceed.</h2>
     <form action="/login", method="POST">
       Username:
       <input type="text" name="username">
@@ -23,9 +24,9 @@
     <br>
     <br>
     <br>
-    <h3>
+    <h2>
         New User? Register here
-    </h3>
+    </h2>
     <button type="button" name="register">
         <a href="{{ url_for('redirect_register')}}">Register</a>
       </button>
